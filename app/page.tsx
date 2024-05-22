@@ -15,28 +15,70 @@ import animationData from "@/animations/landing_page_animation.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 
 import Globe from 'react-globe.gl';
-import { useEffect, useRef } from "react";
+import { World } from '@/components/globe'
+import { useEffect, useRef, useState } from "react";
 
 
 export default function Home() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const globeEl = useRef<any>()
+  const [currentStateNumber, setCurrentStateNumber] = useState(0);
+  const targetStateNumber = 30
+
+  const [currentCountryNumber, setCurrentCountryNumber] = useState(0);
+  const targetCountryNumber = 10
+
+  const [currentImpactNumber, setCurrentImpactNumber] = useState<number | string>(0);
+  const targetImpactNumber = 30600
+
+  const [currentUserNumber, setCurrentUserNumber] = useState<number | string>(0);
+  const targetUserNumber = 15213
 
   useEffect(() => {
-    // Auto-rotate
-    globeEl!.current!.controls().autoRotate = true;
-    globeEl!.current!.controls().autoRotateSpeed = 1;
-    globeEl!.current!.controls().enableZoom = false;
-    globeEl!.current!.pointOfView({
-      lat: 23.5,
-      lng: 0,
-      altitude: 2.5,
-    })
-  }, [])
+    const interval = setInterval(() => {
+      setCurrentStateNumber((prevNumber) => {
+        const increment = Math.ceil(targetStateNumber / 10); // Adjust speed by changing the denominator
+        return Math.min(prevNumber + increment, targetStateNumber);
+      });
+    }, 100); // Adjust interval speed for smoother/faster incrementation
+
+    return () => clearInterval(interval);
+  }, [targetStateNumber]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentCountryNumber((prevNumber) => {
+        const increment = Math.ceil(targetCountryNumber / 10); // Adjust speed by changing the denominator
+        return Math.min(prevNumber + increment, targetCountryNumber);
+      });
+    }, 100); // Adjust interval speed for smoother/faster incrementation
+
+    return () => clearInterval(interval);
+  }, [targetCountryNumber]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImpactNumber((prevNumber) => {
+        const increment = Math.ceil(targetImpactNumber / 13); // Adjust speed by changing the denominator
+        return Math.min((prevNumber as number) + increment, targetImpactNumber);
+      });
+    }, 100); // Adjust interval speed for smoother/faster incrementation
+
+    return () => clearInterval(interval);
+  }, [targetImpactNumber]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentUserNumber((prevNumber) => {
+        const increment = Math.ceil(targetUserNumber / 13); // Adjust speed by changing the denominator
+        return Math.min((prevNumber as number) + increment, targetUserNumber);
+      });
+    }, 100); // Adjust interval speed for smoother/faster incrementation
+
+    return () => clearInterval(interval);
+  }, [targetUserNumber]);
 
   return (
-    <main className="flex flex-col w-full min-h-screen max-w-screen overflow-x-hidden">
-      <div className=" w-full items-center justify-start flex flex-col pt-[18vh]">
+    <main className="flex flex-col w-full min-h-screen max-w-screen overflow-x-hidden gap-y-24">
+      <div className=" w-full items-center justify-start flex flex-col pt-[13vh]">
         <div className="relative mx-4 flex w-4/5 flex-col items-center z-20">
           <div className="mb-8 flex">
             <a
@@ -85,7 +127,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col w-full items-center justify-center pt-[20vh] z-20 pb-[15vh] gap-y-12">
+      <div className="flex flex-col w-full items-center justify-center pt-[10vh] z-20 pb-[4vh] gap-y-12">
         {/* <div className='text-white text-4xl text-semibold'>
           Your Pathway To The Future
         </div> */}
@@ -512,19 +554,22 @@ export default function Home() {
           </span>
           {" "}reach.
         </div>
+        <div className='flex flex-row'>
+          <div className='flex flex-col gap-y-3 w-1/4 text-white'>
+            <p className='text-center w-full text-6xl font-semibold text-[rgb(255,143,143)]'>{currentUserNumber}</p>
+            <p className='text-center w-full text-3xl '>Users</p>
+            <p className='text-center w-full text-6xl font-semibold text-[#FF8F8F]'>{currentImpactNumber}</p>
+            <p className='text-center w-full text-3xl'>Students Impacted</p>
+          </div>
+          <World />
+          <div className='flex flex-col gap-y-3 w-1/4 text-white'>
+            <p className='text-center w-full text-6xl font-semibold text-[#FF8F8F]'>{currentStateNumber}</p>
+            <p className='text-center w-full text-3xl'>States</p>
+            <p className='text-center w-full text-6xl font-semibold text-[#FF8F8F]'>{currentCountryNumber}</p>
+            <p className='text-center w-full text-3xl'>Countries</p>
+          </div>
+        </div>
 
-        <Globe
-          ref={globeEl}
-          globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-          // pointsData={gData}
-          // pointAltitude="size"
-          pointColor="color"
-          width={300}
-          height={400}
-          enablePointerInteraction={false}
-          backgroundColor='rgba(0,0,0,0)'
-
-        />
       </div>
       <div className="footer h-[50px]"></div>
     </main>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Kanit } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import { Navbar } from "@nextui-org/react";
+import { WebNavbarV1 } from "@/components/ui/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 const kanit = Kanit({
@@ -31,6 +33,7 @@ export default function RootLayout({
             </div>
           </div>
           <Providers>
+            <WebNavbarV1 />
             {children}
           </Providers>
       </body>
