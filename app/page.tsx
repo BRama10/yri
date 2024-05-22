@@ -6,12 +6,13 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 import Card01 from '@/public/card-01.png'
+import { IlluminatedCard } from "@/components/illuminate_card";
 
 export default function Home() {
   return (
     <main className="flex flex-col w-full min-h-screen">
-      <div className="h-screen w-full items-center justify-center flex flex-col">
-        <div className="relative mx-auto flex max-w-2xl flex-col items-center z-20">
+      <div className=" w-full items-center justify-start flex flex-col pt-[30vh]">
+        <div className="relative mx-4 flex w-4/5 flex-col items-center z-20">
           <div className="mb-8 flex">
             <a
               href="https://github.com/ibelick/background-snippets"
@@ -34,16 +35,17 @@ export default function Home() {
               </span>
             </a>
           </div>
-          <h2 className="text-center text-3xl font-medium text-gray-50 sm:text-6xl">
+          <h2 className="text-center text-3xl text-gray-50 sm:text-6xl w-full font-extrabold">
             Youth Research{' '}
             <span className="animate-text-gradient inline-flex bg-gradient-to-r bg-[200%_auto] bg-clip-text leading-tight text-transparent from-neutral-100 via-slate-400 to-neutral-400">
               Initiative
             </span>
-          </h2>
-          <p className="mt-6 text-center text-lg leading-6 text-gray-200">
-            The worlds leading {' '}
-            <span className="cursor-wait opacity-70">youth-oriented</span> research organtization.
+          </h2> 
+          <p className="mt-3 text-center text-4xl bg-gradient-to-r from-sky-400 to-purple-400 text-transparent dark:bg-gradient-to-r decoration-clone bg-clip-text">
+            The world&lsquo;s leading {' '}
+            youth-oriented research organtization.
           </p>
+          <p className=''></p>
           <div className="mt-10 flex gap-4">
             <Button color={'primary'}>
               Get Started!
@@ -53,6 +55,30 @@ export default function Home() {
             </Button>
           </div>
         </div>
+      </div>
+      <div className='flex flex-col w-full items-center justify-center pt-12 z-20 pb-6 gap-y-12'>
+        {/* <div className='text-white text-4xl text-semibold'>
+          Your Pathway To The Future
+        </div> */}
+        {/* <Slider /> */}
+        <div className="w-screen flex gap-x-16 justify-center">
+          <IlluminatedCard>
+            <img src='https://framerusercontent.com/images/zxLzTf2KtIiVLxdz3eqSH0ldpA.jpeg' alt='Test'></img>
+            <p>We Inspire</p> 
+          </IlluminatedCard>
+
+          <IlluminatedCard>
+          <img src='https://framerusercontent.com/images/WGK7gQqsNdtJcYv9iUaNv1ta8c0.jpeg' alt='Test'></img>
+            <p>We Unlock Pathways</p> 
+          </IlluminatedCard>
+
+          <IlluminatedCard>
+          <img src='https://framerusercontent.com/images/X30JQ7v6vYGxfrKQDGGVs9qxlew.jpg' alt='Test'></img>
+            <p>We Empower</p> 
+          </IlluminatedCard>
+          
+        </div>
+
       </div>
       <div className='flex flex-col w-full items-center justify-center pt-12 z-20 pb-6 bg-slate-900 gap-y-12'>
         <div className='text-white text-5xl text-semibold'>
@@ -226,11 +252,13 @@ export default function Home() {
         </Spotlight>
       </div>
       <div className='flex flex-col w-full items-center justify-center pt-12 z-20 pb-6 gap-y-12'>
-      <div className='text-white text-4xl text-semibold'>
+        <div className='text-white text-4xl text-semibold'>
           Trusted By
-      </div>
+        </div>
         <Slider />
       </div>
+     
+      <div className='footer h-[50px]'></div>
     </main>
   );
 }
