@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
 import Spotlight, { SpotlightCard } from "@/components/spotlight";
 import Slider from "@/components/slider";
 
-import { Button } from "@nextui-org/react";
+import { Button, Chip } from "@nextui-org/react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
@@ -11,20 +11,28 @@ import Card01 from "@/public/card-01.png";
 import Apple from "@/public/apple.svg";
 import { IlluminatedCard } from "@/components/illuminate_card";
 
-import Lottie from 'react-lottie';
-import animationData from '@/animations/landing_page_animation.json'
-import { Player } from '@lottiefiles/react-lottie-player';
+import animationData from "@/animations/landing_page_animation.json";
+import { Player } from "@lottiefiles/react-lottie-player";
+
+import Globe from 'react-globe.gl';
+import { useEffect, useRef } from "react";
+
 
 export default function Home() {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    // rendererSettings: {
-    //   preserveAspectRatio: "xMidYMid slice"
-    // }
-  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const globeEl = useRef<any>()
 
+  useEffect(() => {
+    // Auto-rotate
+    globeEl!.current!.controls().autoRotate = true;
+    globeEl!.current!.controls().autoRotateSpeed = 1;
+    globeEl!.current!.controls().enableZoom = false;
+    globeEl!.current!.pointOfView({
+      lat: 23.5,
+      lng: 0,
+      altitude: 2.5,
+    })
+  }, [])
 
   return (
     <main className="flex flex-col w-full min-h-screen max-w-screen overflow-x-hidden">
@@ -32,14 +40,14 @@ export default function Home() {
         <div className="relative mx-4 flex w-4/5 flex-col items-center z-20">
           <div className="mb-8 flex">
             <a
-              href="https://github.com/ibelick/background-snippets"
+              href="https://youthresearchinitiative.org"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex"
             >
               <span className="relative inline-block overflow-hidden rounded-full p-[1px]">
                 <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite]  bg-[conic-gradient(from_90deg_at_50%_50%,#171717_0%,#737373_50%,#171717_100%)]" />
-                <div className="inline-flex h-full w-full cursor-pointer justify-center rounded-full px-3 py-1 text-xs font-medium leading-5 backdrop-blur-xl bg-black text-slate-200">
+                <div className="inline-flex h-full w-full cursor-pointer justify-center rounded-full px-3 py-1 text-lg font-medium leading-5 backdrop-blur-xl bg-black text-slate-200">
                   New API ⚡️
                   <span className="inline-flex items-center pl-2 text-white">
                     Read more{" "}
@@ -55,11 +63,11 @@ export default function Home() {
               Initiative
             </span>
           </h2>
-          <p className="pt-6 pb-8 text-center text-4xl bg-gradient-to-r from-sky-400 to-purple-400 text-transparent dark:bg-gradient-to-r decoration-clone bg-clip-text">
+          <p className="pt-6 pb-8 text-center text-6xl font-semibold bg-gradient-to-r from-sky-400 to-purple-400 text-transparent dark:bg-gradient-to-r decoration-clone bg-clip-text">
             The world&lsquo;s leading youth-oriented research organtization.
           </p>
           <p className=""></p>
-          <div className="pt-12 pb-12 flex gap-4 items-center justify-center">
+          <div className="pt-12 pb-8 flex gap-4 items-center justify-center">
             <Button
               color={"primary"}
               className="text-2xl px-6 py-[32px]"
@@ -76,6 +84,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       <div className="flex flex-col w-full items-center justify-center pt-[20vh] z-20 pb-[15vh] gap-y-12">
         {/* <div className='text-white text-4xl text-semibold'>
           Your Pathway To The Future
@@ -110,9 +119,69 @@ export default function Home() {
           </IlluminatedCard>
         </div>
       </div>
+      <div className="flex flex-col w-full items-center justify-center pt-12 z-20 pb-6 gap-y-12">
+        <div className="text-white text-6xl text-semibold ">Trusted By</div>
+        <Slider />
+      </div>
+      <div className="flex flex-col w-full items-center justify-center pt-12 z-20 pb-6 bg-inherit gap-y-12">
+        <div className="text-white text-6xl text-semibold">
+          State Of The Art Tools{" "}
+          <span className="tracking-tight inline font-semibold from-[#FF705B] to-[#FFB457]  bg-clip-text text-transparent bg-gradient-to-b">
+            in your hands.
+          </span>
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="flex flex-col px-10 w-1/4 grow h-full self-start gap-y-16">
+            <div className="w-full text-wrap text-3xl text-white font-bold">
+              Learn from the best.{' '}
+              <span className="text-[#777777] font-normal">
+                Trained on past winners & top scientific minds, our AI combines
+                the best of the best.
+              </span>
+            </div>
+            <Chip color="warning" variant="bordered" className='react-floater-animated self-start ml-[2.5vw] text-2xl px-4 py-6' size={'lg'}>
+              Bordered
+            </Chip>
+            <Chip color="warning" variant="bordered" className='react-floater-animated-reverse self-end mr-[2.5vw] text-2xl px-4 py-6' size={'lg'}>
+              Bordered
+            </Chip>
+            <Chip color="warning" variant="bordered" className='react-floater-animated self-start ml-[2.5vw] text-2xl px-4 py-6' size={'lg'}>
+              Bordered
+            </Chip>
+          </div>
+          <Player
+            src={animationData}
+            loop
+            autoplay
+            className="rounded-2xl react-floater-animated"
+          />
+          <div className="flex flex-col px-10 w-1/4 grow h-full self-start gap-y-16">
+            <div className="w-full text-wrap text-3xl text-white font-bold">
+              Always improving.{' '}
+              <span className="text-[#777777] font-normal">
+                Grows smarter and more powerful with every use.
+              </span>
+            </div>
+            <Chip color="warning" variant="bordered" className='react-floater-animated-reverse self-end mr-[2.5vw] text-2xl px-4 py-6' size={'lg'}>
+              Bordered
+            </Chip>
+            <Chip color="warning" variant="bordered" className='react-floater-animated self-start ml-[2.5vw] text-2xl px-4 py-6' size={'lg'}>
+              Bordered
+            </Chip>
+            <Chip color="warning" variant="bordered" className='react-floater-animated-reverse self-end mr-[2.5vw] text-2xl px-4 py-6' size={'lg'}>
+              Bordered
+            </Chip>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-col w-full items-center justify-center pt-12 z-20 pb-6 bg-slate-900 gap-y-12">
-        <div className="text-white text-5xl text-semibold">
-          A Pursuit Of Knowledge
+        <div className="text-white text-6xl text-semibold">
+          A{" "}
+          <span className="tracking-tight inline font-semibold from-[#6FEE8D] to-[#17c964] bg-clip-text text-transparent bg-gradient-to-b">
+            Dogged Pursuit
+          </span>{" "}
+          Of Knowledge
         </div>
         <Spotlight className="max-w-sm mx-auto grid gap-6 lg:grid-cols-3 items-start lg:max-w-none group">
           {/* Card #1 */}
@@ -432,25 +501,31 @@ export default function Home() {
           </SpotlightCard>
         </Spotlight>
       </div>
-      <div className="flex flex-col w-full items-center justify-center pt-12 z-20 pb-6 gap-y-12">
-        <div className="text-white text-4xl text-semibold">Trusted By</div>
-        <Slider />
-      </div>
+
+
 
       <div className="flex flex-col w-full items-center justify-center pt-12 z-20 pb-6 bg-inherit gap-y-12">
-        {/* <Lottie
-          options={defaultOptions}
+        <div className="text-white text-6xl text-semibold">
+          A{" "}
+          <span className="tracking-tight inline font-semibold from-[#FF72E1] to-[#F54C7A]  bg-clip-text text-transparent bg-gradient-to-b">
+            global
+          </span>
+          {" "}reach.
+        </div>
+
+        <Globe
+          ref={globeEl}
+          globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+          // pointsData={gData}
+          // pointAltitude="size"
+          pointColor="color"
+          width={300}
           height={400}
-          width={400}
-        /> */}
-        <Player 
-        src={animationData}
-        loop
-        autoplay
-        className='rounded-2xl react-floater-animated'
+          enablePointerInteraction={false}
+          backgroundColor='rgba(0,0,0,0)'
+
         />
       </div>
-
       <div className="footer h-[50px]"></div>
     </main>
   );

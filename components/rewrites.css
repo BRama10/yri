@@ -341,14 +341,34 @@
 	  transform: translateY(0px) translateX(0px);
 	}
 	50% {
-	  transform: translateY(20px) translateX(10px);
+	  transform: translateY(10px) translateX(10px);
 	  /* transform: translateX(-10px); */
 	}
 	100% {
 		transform: translateY(0px) translateX(0px);
 	}
   }
+
+  @keyframes floating-reverse {
+	0% {
+	  transform: translateY(0px) translateX(0px);
+	}
+	50% {
+	  transform: translateY(-10px) translateX(-10px);
+	  /* transform: translateX(-10px); */
+	}
+	100% {
+		transform: translateY(0px) translateX(0px);
+	}
+  }
+
+
   .react-floater-animated {
 	animation: floating 3s ease infinite;
+	will-change: transform;
+  }
+
+  .react-floater-animated-reverse {
+	animation: floating-reverse 3s ease infinite;
 	will-change: transform;
   }
