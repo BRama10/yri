@@ -75,7 +75,7 @@
 	--card-color: hsl(260deg 100% 3%);
 	--text-color: hsl(260deg 10% 55%);
 	--card-radius: 3.6vw;
-	--card-width: 25vw;
+	--card-width: 30vw;
 	--border-width: 3px;
 	--bg-size: 1;
 	--hue: 0;
@@ -335,3 +335,20 @@
 		--hue: 360;
 	}
 }
+
+@keyframes floating {
+	0% {
+	  transform: translateY(0px) translateX(0px);
+	}
+	50% {
+	  transform: translateY(20px) translateX(10px);
+	  /* transform: translateX(-10px); */
+	}
+	100% {
+		transform: translateY(0px) translateX(0px);
+	}
+  }
+  .react-floater-animated {
+	animation: floating 3s ease infinite;
+	will-change: transform;
+  }

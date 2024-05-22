@@ -12,7 +12,7 @@ export const IlluminatedCard: React.FC<CardProps> = ({
     return (
         <div className="card" role="button">
             <span className="glow"></span>
-            <div className="inner">
+            <div className="inner !gap-y-4">
                 {children}
             </div>
         </div>
