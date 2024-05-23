@@ -23,14 +23,19 @@ export default function Spotlight({
     containerRef.current && setBoxes(Array.from(containerRef.current.children).map((el) => el as HTMLElement))
   }, [])
   
-  useEffect(() => {    
-    initContainer()
-    window.addEventListener('resize', initContainer)
+  // useEffect(() => {    
+  //   initContainer()
+  //   if (window) {
+  //     window.addEventListener('resize', initContainer)
 
-    return () => {
-      window.removeEventListener('resize', initContainer)
-    }
-  }, [boxes])  
+  //     return () => {
+  //       window.removeEventListener('resize', initContainer)
+  //     }
+  //   }
+    
+
+    
+  // }, [boxes])  
 
   useEffect(() => {
     onMouseMove()

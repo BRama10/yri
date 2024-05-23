@@ -1,12 +1,12 @@
 import { Textarea } from "@nextui-org/react";
 
-export const QueryBox = () => {
+export const AIBox = () => {
   return (
     <div className="group" data-row-key="message_first">
       <div className="flex w-full flex-col content-start lg:flex-row lg:hover:bg-[#262626]">
         <div className="flex justify-between p-2 lg:p-4">
           <button className="inline-flex items-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 mr-2 min-w-[85px] justify-start bg-none px-2 py-1 text-base uppercase lg:min-w-[100px] lg:px-4 lg:py-2 lg:hover:bg-accent lg:group-hover:bg-accent">
-            user
+            nightshade
           </button>
           <button
             className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 py-2 ml-2 px-2 lg:h-10 lg:px-4 lg:hidden"

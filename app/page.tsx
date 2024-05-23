@@ -191,12 +191,12 @@ export default function Home() {
               Bordered
             </Chip>
           </div>
-          <Player
+          {/* <Player
             src={animationData}
             loop
             autoplay
             className="rounded-2xl react-floater-animated"
-          />
+          /> */}
           <div className="flex flex-col px-10 w-1/4 grow h-full self-start gap-y-16">
             <div className="w-full text-wrap text-3xl text-white font-bold">
               Always improving.{' '}
@@ -561,7 +561,7 @@ export default function Home() {
             <p className='text-center w-full text-6xl font-semibold text-[#FF8F8F]'>{currentImpactNumber}</p>
             <p className='text-center w-full text-3xl'>Students Impacted</p>
           </div>
-          <World />
+          {/* <World /> */}
           <div className='flex flex-col gap-y-3 w-1/4 text-white'>
             <p className='text-center w-full text-6xl font-semibold text-[#FF8F8F]'>{currentStateNumber}</p>
             <p className='text-center w-full text-3xl'>States</p>
