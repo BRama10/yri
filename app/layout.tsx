@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
 
-      <body className={`${inter.className} min-h-screen overflow-y-auto relative`}>
+      <body className={`${inter.className} min-h-screen overflow-y-auto relative dark`}>
        
           <div className="fixed left-0 top-0 z-10 h-full w-full">
             <div className="relative h-full w-full bg-black">
