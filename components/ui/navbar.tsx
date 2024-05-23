@@ -15,7 +15,7 @@ export const WebNavbarV1 = () => {
   const router = useRouter();
 
   return (
-    <Navbar isBordered className='w-full bg-inherit h-fit py-2 z-[40]' classNames={{
+    <Navbar isBordered className='w-full bg-inherit z-[40] h-[4rem]' classNames={{
       wrapper: 'w-full !max-w-full'
     }}>
       <NavbarMenuToggle

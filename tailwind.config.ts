@@ -23,6 +23,9 @@ const config: Config = {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-100%)' },
         },     
+      },
+      backgroundColor: {
+        'shallow': '#262626'
       }
     },
   },
