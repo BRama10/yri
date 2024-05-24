@@ -5,6 +5,8 @@ import { Settings } from '@/components/pathways/settings'
 import { Instruction } from '@/components/pathways/instruction'
 import { Interface } from '@/components/pathways/interface'
 
+import Model, { entitle_v1_definition, assign } from "@/meta/model_definitions";
+
 import { useEffect, useState } from 'react';
 
 interface PathwaysProps {
@@ -14,16 +16,17 @@ interface PathwaysProps {
 export const Pathways: React.FC<PathwaysProps> = ({
     keys
 }) => {
-    const [model, setModel] = useState('');
+    const [model, setModel] = useState<Model>(entitle_v1_definition);
     const [availableKeys, setAvailableKeys] = useState<string[]>([...keys]);
 
-    const useKey= () => {
+    const useKey = async (request: (data:string, key: string) => Promise<void>, d: string) => {
         if (availableKeys.length > 0) {
             const key = availableKeys[0];
+            await request(d, key)
         } else {
             window.alert('Max Requests Reached. Please reload page!')
-        }
-        
+            return
+        }    
     }
 
 
@@ -36,9 +39,11 @@ export const Pathways: React.FC<PathwaysProps> = ({
                 <h2 className="p-4 pl-[24px] text-2xl font-medium">Toolshop</h2>
             </div>
             <div className='h-[90%] w-full flex flex-row'>
-                <Instruction />
-                <Interface />
-                <Settings exportModel={(model: string) => setModel(model)} />
+                <Instruction model={model} />
+                <Interface secureHandler={useKey} model={model} />
+                <Settings exportModel={(model: string) => {
+                    setModel(assign(model))
+                }} />
             </div>
         </div>
     </main>

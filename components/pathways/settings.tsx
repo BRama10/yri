@@ -21,7 +21,7 @@ interface SettingsInterface {
 export const Settings: React.FC<SettingsInterface> = ({
     exportModel
 }) => {
-    const [selectedModels, setSelectedModels] = useState(new Set(["titylize-v1"]));
+    const [selectedModels, setSelectedModels] = useState(new Set(["entitle-v1"]));
 
     const selectedModel = useMemo(
         () => Array.from(selectedModels).join(", ").replaceAll("_", " "),
@@ -47,10 +47,13 @@ export const Settings: React.FC<SettingsInterface> = ({
                 //@ts-ignore
                 onSelectionChange={setSelectedModels}
             >
-                <DropdownItem key="titylize-v0">titylize-v0</DropdownItem>
+                <DropdownItem key="entitle-v0">entitle-v0</DropdownItem>
                 <DropdownItem key="abstractify-v0">abstractify-v0</DropdownItem>
-                <DropdownItem key="titylize-v1">titylize-v1</DropdownItem>
+                <DropdownItem key="catalyze-v0">catalyze-v0</DropdownItem>
+                <DropdownItem key="entitle-v1">entitle-v1</DropdownItem>
                 <DropdownItem key="abstractify-v1">abstractify-v1</DropdownItem>
+                <DropdownItem key="catalyze-v1">catalyze-v1</DropdownItem>
+                
             </DropdownMenu>
         </Dropdown>
     </div>
