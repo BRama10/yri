@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { Navbar } from "@nextui-org/react";
 import { WebNavbarV1 } from "@/components/ui/navbar";
+import { AIContex}
 
 const inter = Inter({ subsets: ["latin"] });
 const kanit = Kanit({
@@ -37,10 +38,14 @@ export default function RootLayout({
             <div className="absolute left-0 right-0 top-[-10%] h-[1000px] w-[1000px] rounded-full bg-[radial-gradient(circle_400px_at_50%_300px,#fbfbfb36,#000)]"></div>
           </div>
         </div>
+        <MicrophoneContext>
+          <AIContext>
         <Providers>
           <WebNavbarV1 />
           {children}
         </Providers>
+        </AIContext>
+        </MicrophoneContext>
       </body>
     </html>
   );

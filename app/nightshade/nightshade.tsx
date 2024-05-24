@@ -5,8 +5,6 @@ import { Settings } from '@/components/pathways/settings'
 import { Instruction } from '@/components/pathways/instruction'
 import { Interface } from '@/components/pathways/interface'
 
-import Model, { entitle_v1_definition, assign } from "@/meta/model_definitions";
-
 import { useEffect, useState } from 'react';
 
 interface PathwaysProps {
@@ -16,12 +14,12 @@ interface PathwaysProps {
 export const Pathways: React.FC<PathwaysProps> = ({
     keys
 }) => {
-    const [model, setModel] = useState<Model>(entitle_v1_definition);
     const [availableKeys, setAvailableKeys] = useState<string[]>([...keys]);
 
     const useKey = async (request: (data:string, key: string) => Promise<void>, d: string) => {
         if (availableKeys.length > 0) {
             const key = availableKeys[0];
+            setAvailableKeys((prevState) => prevState.slice(1))
             await request(d, key)
         } else {
             window.alert('Max Requests Reached. Please reload page!')
@@ -34,7 +32,7 @@ export const Pathways: React.FC<PathwaysProps> = ({
         height: 'calc(100vh - 4rem)'
     }}>
         <Sidebar />
-        <div className='w-[85vw] h-full bg-inherit flex flex-col'>
+        <div className='w-[88vw] h-full bg-inherit flex flex-col'>
             <div className='h-[10%] w-full border-b-1 border-[rgba(153, 153, 153, 0.5)] flex items-center justify-between px-3'>
                 <h2 className="p-4 pl-[24px] text-2xl font-medium">Toolshop</h2>
             </div>

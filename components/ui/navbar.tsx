@@ -29,35 +29,35 @@ export const WebNavbarV1 = () => {
       <NavbarContent className="hidden md:flex gap-6 bg-blac shadow-medium  px-6" justify={'start'}>
         <NavbarItem isActive={(pathname == '/' || pathname.includes('idea') ) && true}>
           <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/" aria-current={pathname == '/' && 'page'}>
-            DISCOVER
+            Home
           </Link>
         </NavbarItem>
         
-        <NavbarItem isActive={pathname == '/findafair' && true}>
-          <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/findafair" aria-current={pathname == '/findafair' && 'page'}>
-            FIND A FAIR
+        <NavbarItem isActive={pathname == '/optimizers' && true}>
+          <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/optimizers" aria-current={pathname == '/optimizers' && 'page'}>
+            Optimizers
           </Link>
         </NavbarItem>
         <NavbarItem isActive={pathname == '/judge' && true}>
           <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/judge" aria-current={pathname == '/judge' && 'page'}>
-            AI Judge
+            Pathways
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="https://rishabacademy.com/stem">
-            COACHING
+        <NavbarItem isActive={pathname == '/nightshade' && true}>
+          <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/nightshade" aria-current={pathname == '/nightshade' && 'page'}>
+            Nightshade
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/guide">
-            GUIDE
+            API
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end" className='hidden md:flex'>
         <NavbarItem className="hidden md:flex gap-x-4 px-6">
         <Button as={Link} href="#" className='bg-white text-black rounded-full'>
-            Login
+            Donate
           </Button>
           <Button as={Link} href="#" className='bg-white text-black rounded-full'>
             Login

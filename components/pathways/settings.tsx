@@ -29,6 +29,7 @@ export const Settings: React.FC<SettingsInterface> = ({
     );
 
     useEffect(() => {
+        console.log(`Selected Model @ ${selectedModel}`)
         exportModel(selectedModel)
     }, [selectedModel])
 

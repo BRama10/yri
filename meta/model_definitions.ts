@@ -66,7 +66,7 @@ export function assign(name: string) {
     if (name == 'entitle-v0') {
         return entitle_v0_definition
     } else if (name == 'entitle-v1') {
-        return entitle_v0_definition
+        return entitle_v1_definition
     } else if (name == 'catalyze-v0') {
         return catalyze_v0_definition
     } else if (name == 'catalyze-v1') {

@@ -24,7 +24,7 @@ export const QueryBox: React.FC<QueryBoxProps> = ({
     <div className="group border-b-1 border-[rgba(153, 153, 153, 0.5)]" data-row-key="message_first">
       <div className="flex w-full flex-col content-start lg:flex-row hover:bg-[#262626] group-focus:bg-[#262626]">
         <div className="flex justify-between p-2 lg:p-4">
-          <button className="inline-flex items-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 mr-2 min-w-[85px] justify-start bg-none px-2 py-1 text-base uppercase lg:min-w-[100px] lg:px-4 lg:py-2 lg:hover:bg-accent lg:group-hover:bg-accent">
+          <button className="inline-flex items-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-10 mr-2 min-w-[85px] justify-start bg-none px-2 py-1 text-lg uppercase lg:min-w-[100px] lg:px-4 lg:py-2 lg:hover:bg-accent lg:group-hover:bg-accent">
             user
           </button>
           <button
@@ -56,7 +56,7 @@ export const QueryBox: React.FC<QueryBoxProps> = ({
             placeholder="Fix the abstract to help me win ISEF."
             classNames={{
                 base: 'bg-inherit',
-                input: 'bg-inherit !data-[hover=true]:bg-inherit !group-data-[focus=true]:inherit',
+                input: 'bg-inherit !data-[hover=true]:bg-inherit !group-data-[focus=true]:inherit !text-lg',
                 innerWrapper: 'bg-inherit',
                 inputWrapper: 'bg-inherit data-[hover=true]:bg-inherit group-data-[focus=true]:bg-black  group-data-[focus=true]:border-2 group-data-[focus=true]:border-white group-data-[focus=true]:rounded-2xl',
                 
