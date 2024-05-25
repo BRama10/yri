@@ -1,17 +1,17 @@
 'use client'
 
-import { Sidebar } from "@/components/pathways/sidebar";
-import { Settings } from '@/components/pathways/settings'
-import { Instruction } from '@/components/pathways/instruction'
-import { Interface } from '@/components/pathways/interface'
+import { Sidebar } from "@/components/nightshade/sidebar";
+import { Settings } from '@/components/nightshade/settings'
+import { Instruction } from '@/components/nightshade/instruction'
+import { Interface } from '@/components/nightshade/interface'
 
 import { useEffect, useState } from 'react';
 
-interface PathwaysProps {
+interface NightshadeProps {
     keys: string[]
 }
 
-export const Pathways: React.FC<PathwaysProps> = ({
+export const Nightshade: React.FC<NightshadeProps> = ({
     keys
 }) => {
     const [availableKeys, setAvailableKeys] = useState<string[]>([...keys]);
@@ -37,11 +37,9 @@ export const Pathways: React.FC<PathwaysProps> = ({
                 <h2 className="p-4 pl-[24px] text-2xl font-medium">Toolshop</h2>
             </div>
             <div className='h-[90%] w-full flex flex-row'>
-                <Instruction model={model} />
-                <Interface secureHandler={useKey} model={model} />
-                <Settings exportModel={(model: string) => {
-                    setModel(assign(model))
-                }} />
+                <Instruction />
+                <Interface secureHandler={useKey} />
+                <Settings exportPresets={() => null} />
             </div>
         </div>
     </main>

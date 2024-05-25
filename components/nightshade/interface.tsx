@@ -1,22 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import { QueryBox } from "./querybox"
-import { EntitleBox } from "./aiboxes/entitle";
-
+import { AIBox } from "./aibox";
 import { useEffect, useState } from "react";
-import Model from "@/meta/model_definitions";
 
 import axios from 'axios';
-import { CatalyzeBox } from "./aiboxes/catalyze";
 
 interface InterfaceProps {
     secureHandler: (request: (data: string, key: string) => Promise<void>, d: string) => Promise<void>
-    model: Model
 }
 
 export const Interface: React.FC<InterfaceProps> = ({
     secureHandler,
-    model
 }) => {
     const _exitHandler = (idToDelete: number) => {
         setQueryBoxes(prevQueryBoxes => prevQueryBoxes.filter(queryBox => queryBox.id !== idToDelete));
@@ -38,61 +34,41 @@ export const Interface: React.FC<InterfaceProps> = ({
         { id: 0, text: '' }
     ])
 
+    const [conversation, setConversation] = useState<any>([])
+
     const handleSubmit = async () => {
         // setQueryBoxes((prevState) => [...prevState, <AIBox key={queryBoxes.length} />]);
         const method = async (data: string, key: string) => {
-            const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model.getVersion()}/${model.getName().toLowerCase()}?api_key=${key}`;
-            // const fetchUrl = `http://localhost:8000/models/${model.getVersion()}/${model.getName().toLowerCase()}?api_key=${key}`;
-            console.log(fetchUrl);
-            if (model.getName().toLowerCase() == 'entitle') {
-                setQueryBoxes((prevState) => [...prevState, {
-                    id: prevState.length,
-                    element: <EntitleBox load={true} main_title={null} alternate_titles={null} key={prevState.length} />
-                }])
-            } else if (model.getName().toLowerCase() == 'catalyze') {
-                setQueryBoxes((prevState) => [...prevState, {
-                    id: prevState.length,
-                    element: <CatalyzeBox key={prevState.length} load={true} category_1={null} category_2={null} category_3={null} />
-                }])
-            }
+            const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/nightshade/generate?api_key=${key}`;
 
-            const response = await axios.post(fetchUrl, {
-                payload: data
-            });
-
-            if (model.getName().toLowerCase() == 'entitle') {
-                setQueryBoxes((prevState) => [...prevState.slice(0, prevState.length - 1), {
-                    id: prevState.length - 1,
-                    element: <EntitleBox key={prevState.length - 1} load={false} main_title={response.data.optimized_title} alternate_titles={response.data.partial_responses} />
-                }])
-            } else if (model.getName().toLowerCase() == 'catalyze') {
-                console.log(response.data)
-                const dataArray = Object.entries(response.data.category_breakdown).map(([key, value]) => ({ key, value }));
-                dataArray.sort((a: any, b: any) => b.value - a.value);
-
-                const category_1 = { [dataArray[0].key]: dataArray[0].value as number };
-                const category_2 = { [dataArray[1].key]: dataArray[1].value as number };
-                const category_3 = { [dataArray[2].key]: dataArray[2].value as number };
-
-
-                setQueryBoxes((prevState) => [...prevState.slice(0, prevState.length - 1), {
-                    id: prevState.length - 1,
-                    element: <CatalyzeBox key={`sdasd${prevState.length - 1}`} load={false} category_1={category_1} category_2={category_2} category_3={category_3} />
-                }])
-            }
-
-            setQueryBoxes((prevState) => {
-
-                setQueries((prevState1) => {
-                    return [...prevState1, { id: prevState.length, text: '' }]
-                })
-
+            setConversation((prevState: any) => {
                 return [...prevState, {
-                    id: prevState.length,
-                    element: <QueryBox key={prevState.length} id_={prevState.length} textHandler={_textHandler} />
+                    role: 'user',
+                    content: data
                 }]
             })
 
+            setQueryBoxes((prevState) => [...prevState, {
+                id: prevState.length,
+                element: <AIBox load={true} text={''} key={prevState.length} />
+            }])
+            
+
+            const response = await axios.post(fetchUrl, {
+                conversation: conversation
+            });
+
+            setQueryBoxes((prevState) => [...prevState.slice(0, prevState.length - 1), {
+                id: prevState.length - 1,
+                element: <AIBox load={true} text={response.data.response} key={prevState.length - 1} />
+            }])
+
+            setConversation((prevState: any) => {
+                return [...prevState, {
+                    role: 'assistant',
+                    content: response.data.response
+                }]
+            })
 
         }
 
@@ -118,7 +94,6 @@ export const Interface: React.FC<InterfaceProps> = ({
         return () => {
             document.removeEventListener('keydown', handleKeyDown);
         };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <div className='h-full w-[70%] bg-inherit flex flex-col'>

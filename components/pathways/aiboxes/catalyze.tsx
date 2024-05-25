@@ -48,7 +48,7 @@ export const CatalyzeBox: React.FC<CatalyzeProps> = ({
                         ></l-spiral>
                         :
                         <div className='w-full h-full flex flex-col gap-y-6'>
-                            <p className='max-w-full text-wrap text-lg'>All right! Here's the breakdown of the top <b>3</b> categories that your project fits into. Categories with higher percentages align more closely with your project.</p>
+                            <p className='max-w-full text-wrap text-lg'>All right! Here&apos;s the breakdown of the top <b>3</b> categories that your project fits into. Categories with higher percentages align more closely with your project.</p>
 
                             <Progress
                                 label={parseRecord(category_1!)[0] as string}
