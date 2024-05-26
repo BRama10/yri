@@ -25,6 +25,7 @@
     "react-dom": "^18",
     "react-globe.gl": "^2.27.2",
     "react-lottie-player": "^2.0.0",
+    "react-markdown": "^9.0.1",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {

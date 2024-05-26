@@ -16,15 +16,22 @@ export const Nightshade: React.FC<NightshadeProps> = ({
 }) => {
     const [availableKeys, setAvailableKeys] = useState<string[]>([...keys]);
 
-    const useKey = async (request: (data:string, key: string) => Promise<void>, d: string) => {
+    const useKey = async (request: (data: string, key: string) => Promise<void>, d: string) => {
         if (availableKeys.length > 0) {
-            const key = availableKeys[0];
+            const availableKeysUpdated = await new Promise<any[]>((resolve) => {
+                setAvailableKeys((prevState: any) => {
+                    resolve(prevState);
+                    return prevState;
+                });
+            });
+            const key = availableKeysUpdated[0];
             setAvailableKeys((prevState) => prevState.slice(1))
+            console.log('key used', key)
             await request(d, key)
         } else {
             window.alert('Max Requests Reached. Please reload page!')
             return
-        }    
+        }
     }
 
 

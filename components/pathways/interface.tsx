@@ -38,11 +38,15 @@ export const Interface: React.FC<InterfaceProps> = ({
         { id: 0, text: '' }
     ])
 
+    useEffect(() => {
+        console.log(queries)
+    }, [queries])
+
     const handleSubmit = async () => {
         // setQueryBoxes((prevState) => [...prevState, <AIBox key={queryBoxes.length} />]);
         const method = async (data: string, key: string) => {
-            const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model.getVersion()}/${model.getName().toLowerCase()}?api_key=${key}`;
-            // const fetchUrl = `http://localhost:8000/models/${model.getVersion()}/${model.getName().toLowerCase()}?api_key=${key}`;
+            // const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model.getVersion()}/${model.getName().toLowerCase()}?api_key=${key}`;
+            const fetchUrl = `http://localhost:8000/models/${model.getVersion()}/${model.getName().toLowerCase()}?api_key=${key}`;
             console.log(fetchUrl);
             if (model.getName().toLowerCase() == 'entitle') {
                 setQueryBoxes((prevState) => [...prevState, {
