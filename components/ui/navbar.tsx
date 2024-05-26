@@ -38,8 +38,8 @@ export const WebNavbarV1 = () => {
             Optimizers
           </Link>
         </NavbarItem>
-        <NavbarItem isActive={pathname == '/judge' && true}>
-          <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/judge" aria-current={pathname == '/judge' && 'page'}>
+        <NavbarItem isActive={pathname == '/pathways' && true}>
+          <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/judge" aria-current={pathname == '/pathways' && 'page'}>
             Pathways
           </Link>
         </NavbarItem>

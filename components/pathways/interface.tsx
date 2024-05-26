@@ -9,6 +9,8 @@ import Model from "@/meta/model_definitions";
 import axios from "axios";
 import { CatalyzeBox } from "./aiboxes/catalyze";
 
+import Container from "@/components/nightshade/container";
+
 import { } from 'ldrs';
 
 interface InterfaceProps {
@@ -16,12 +18,12 @@ interface InterfaceProps {
         request: (data: string, key: string) => Promise<void>,
         d: string
     ) => Promise<void>;
-    model: Model;
+    model_: Model;
 }
 
 export const Interface: React.FC<InterfaceProps> = ({
     secureHandler,
-    model,
+    model_,
 }) => {
     const [generationTime, setGenerationTime] = useState<number | null>(0);
 
@@ -52,13 +54,24 @@ export const Interface: React.FC<InterfaceProps> = ({
     const handleSubmit = async () => {
         // setQueryBoxes((prevState) => [...prevState, <AIBox key={queryBoxes.length} />]);
         const method = async (data: string, key: string) => {
-            // const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model.getVersion()}/${model.getName().toLowerCase()}?api_key=${key}`;
-            const fetchUrl = `http://localhost:8000/models/${model.getVersion()}/${model
-                .getName()
-                .toLowerCase()}?api_key=${key}`;
+            const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model_.getVersion()}/${model_.getName().toLowerCase()}?api_key=${key}`;
+            // const fetchUrl = `http://localhost:8000/models/${model_.getVersion()}/${model_
+                // .getName()
+                // .toLowerCase()}?api_key=${key}`;
             console.log(fetchUrl);
 
             setGenerationTime(null)
+
+            // const model= await new Promise<any[]>((resolve) => {
+            //     setQueries((prevState: any) => {
+            //         resolve(prevState);
+            //         return prevState;
+            //     });
+            // });
+            console.log('inside loop', model_)
+
+            const model = model_;
+
 
             if (model.getName().toLowerCase() == "entitle") {
                 setQueryBoxes((prevState) => [
@@ -92,8 +105,7 @@ export const Interface: React.FC<InterfaceProps> = ({
                     },
                 ]);
             }
-            
-            console.log('data', data)
+        
 
             const response = await axios.post(fetchUrl, {
                 payload: data,
@@ -196,10 +208,10 @@ export const Interface: React.FC<InterfaceProps> = ({
     }, []);
 
     return (
-        <div className="h-full w-[70%] bg-inherit flex flex-col">
-            <div className="h-[90%] w-full flex flex-col max-h-[92%] overflow-y-auto">
+        <div className="h-full w-[60%] bg-inherit flex flex-col">
+            <Container >
                 {queryBoxes.map((query) => query.element)}
-            </div>
+            </Container >
             <div className="h-[10%] w-full border-t-1 border-[rgba(153, 153, 153, 0.5)] flex flex-row-reverse items-center pr-8 gap-x-10">
                 <button
                     onClick={() => handleSubmit()}

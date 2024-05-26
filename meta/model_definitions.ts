@@ -40,19 +40,19 @@ export default class Model {
 
 export const entitle_v0_definition = new Model(
     'enTitle',
-    '',
+    'Our original title optimizer, draws upon all existing projects since 2016 to craft a title that fits your purpose precisely, while giving it that appeal you need!',
     'v0'
 )
 
 export const entitle_v1_definition = new Model(
     'enTitle',
-    '',
+    'Upgraded version of enTitle, optimized for nearly 10x speed, built on only the best of the best of titles.',
     'v1'
 )
 
 export const catalyze_v0_definition = new Model(
     'Catalyze',
-    '',
+    'Our category chooser, based on your abstract and/or description, gives you the top 3 categories that your project should fit in.',
     'v0'
 )
 

@@ -20,6 +20,8 @@ export const EntitleBox: React.FC<EntitleProps> = ({
         titles = [...alternate_titles, main_title]
     }
 
+    const bgColors = ['#C926EB', '#5526EB', '#26B0EB', '#63EB26', '#F17F25']
+
 
     return (
         <div className="group border-b-1 border-[rgba(153, 153, 153, 0.5)]" data-row-key="message_first">
@@ -38,10 +40,10 @@ export const EntitleBox: React.FC<EntitleProps> = ({
                         ></l-spiral>
                         :
                         <div className='w-full h-full flex flex-col gap-y-6'>
-                            <p className='max-w-full text-wrap text-lg'>Sure! Here's a list of {titles.length} optimized titles that fit your current idea.</p>
+                            <p className='max-w-full text-wrap text-lg'>Sure! Here&apos;s a list of {titles.length} optimized titles that fit your current idea.</p>
                             {titles.map((title, index) => (
                                 <div key={index} className='w-full py-4 flex flex-row items-center gap-x-4'>
-                                    <div className='border border-lg border-white p-2'>{index+1}.</div>{' '}
+                                    <div className='border border-lg border-white p-2 font-semibold' style={{backgroundColor: bgColors[index]}}>{index+1}.</div>{' '}
                                     <div className='text-wrap max-w-4/5'>{title}</div>
                                 </div>
                             ))}

@@ -19,6 +19,10 @@ export const Pathways: React.FC<PathwaysProps> = ({
     const [model, setModel] = useState<Model>(entitle_v1_definition);
     const [availableKeys, setAvailableKeys] = useState<string[]>([...keys]);
 
+    useEffect(() => {
+        console.log(model.getName(), model.getVersion())
+    }, [model])
+
     const useKey = async (request: (data:string, key: string) => Promise<void>, d: string) => {
         if (availableKeys.length > 0) {
             const availableKeysUpdated = await new Promise<any[]>((resolve) => {
@@ -47,9 +51,9 @@ export const Pathways: React.FC<PathwaysProps> = ({
             </div>
             <div className='h-[90%] w-full flex flex-row'>
                 <Instruction model={model} />
-                <Interface secureHandler={useKey} model={model} />
+                <Interface secureHandler={useKey} model_={model} />
                 <Settings exportModel={(model: string) => {
-                    setModel(assign(model))
+                    setModel({ ...{model: assign(model)} }.model)
                 }} />
             </div>
         </div>
