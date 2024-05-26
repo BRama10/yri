@@ -46,7 +46,7 @@ export const Nightshade: React.FC<NightshadeProps> = ({
             <div className='h-[90%] w-full flex flex-row'>
                 <Instruction />
                 <Interface secureHandler={useKey} />
-                <Settings exportPresets={() => null} />
+                {/* <Settings exportPresets={() => null} /> */}
             </div>
         </div>
     </main>

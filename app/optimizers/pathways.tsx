@@ -5,7 +5,7 @@ import { Settings } from '@/components/pathways/settings'
 import { Instruction } from '@/components/pathways/instruction'
 import { Interface } from '@/components/pathways/interface'
 
-import Model, { entitle_v0_definition, assign } from "@/meta/model_definitions";
+import Model, { entitle_v0_definition, entitle_v1_definition, assign } from "@/meta/model_definitions";
 
 import { useEffect, useState } from 'react';
 
@@ -16,12 +16,18 @@ interface PathwaysProps {
 export const Pathways: React.FC<PathwaysProps> = ({
     keys
 }) => {
-    const [model, setModel] = useState<Model>(entitle_v0_definition);
+    const [model, setModel] = useState<Model>(entitle_v1_definition);
     const [availableKeys, setAvailableKeys] = useState<string[]>([...keys]);
 
     const useKey = async (request: (data:string, key: string) => Promise<void>, d: string) => {
         if (availableKeys.length > 0) {
-            const key = availableKeys[0];
+            const availableKeysUpdated = await new Promise<any[]>((resolve) => {
+                setAvailableKeys((prevState: any) => {
+                    resolve(prevState);
+                    return prevState;
+                });
+            });
+            const key = availableKeysUpdated[0];
             setAvailableKeys((prevState) => prevState.slice(1))
             await request(d, key)
         } else {

@@ -26,7 +26,7 @@ export const AIBox: React.FC<AIBoxProps> = ({
               color="green"
             ></l-spiral>
             :
-            <Markdown className='text-white bg-inherit text-base'>{text}</Markdown>
+            <Markdown className='text-white bg-inherit text-base px-2'>{text}</Markdown>
             // <Textarea
             //   className="h-auto flex w-full"
             //   id="message_input_first"

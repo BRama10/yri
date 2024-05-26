@@ -63,15 +63,19 @@ export const catalyze_v1_definition = new Model(
 )
 
 export function assign(name: string) {
-    if (name == 'entitle-v0') {
+    console.log('assigning ', name)
+    if (name.trim() == 'entitle-v0') {
+        console.log('a')
         return entitle_v0_definition
-    } else if (name == 'entitle-v1') {
+        
+    } else if (name.trim() == 'entitle-v1') {
+        console.log('b')
         return entitle_v1_definition
-    } else if (name == 'catalyze-v0') {
+    } else if (name.trim() == 'catalyze-v0') {
         return catalyze_v0_definition
-    } else if (name == 'catalyze-v1') {
+    } else if (name.trim() == 'catalyze-v1') {
         return catalyze_v1_definition
     }
-
+    console.log('c')
     return entitle_v0_definition
 }

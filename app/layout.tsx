@@ -31,6 +31,12 @@ export default function RootLayout({
         defer
         src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/spiral.js"
       ></script>
+      <script
+        async
+        type="module"
+        defer
+        src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/ring.js"
+      ></script>
       <body className={`${inter.className} min-h-screen overflow-y-auto relative dark`}>
 
         <div className="fixed left-0 top-0 z-10 h-full w-full">

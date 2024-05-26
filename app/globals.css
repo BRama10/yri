@@ -48,3 +48,7 @@ div[data-overlay-container=true] {
 ol {
   list-style-type: decimal;
 }
+
+.stroke-primaryaccent {
+  stroke: #a5c3ff
+}
