@@ -62,20 +62,39 @@ export const catalyze_v1_definition = new Model(
     'v1'
 )
 
+export const abstractify_v0_definition = new Model(
+    'Abstractify',
+    'Our original abstract optimizer, only available on our Discord bot due to its tendency to crash and it\'s extremely long processing time.',
+    'v0'
+)
+
+export const abstractify_v1_definition = new Model(
+    'Abstractify',
+    'An optimized version of our initial model, with response times being of equal quality but with speeds 40x faster.',
+    'v1'
+)
+
+export const abstractify_v2_definition = new Model(
+    'Abstractify',
+    'A further optimized version of our initial model, with more precise results, tuned for catching the tiny mistakes. Nearly 2x faster than v1.',
+    'v2'
+)
+
 export function assign(name: string) {
     console.log('assigning ', name)
     if (name.trim() == 'entitle-v0') {
-        console.log('a')
         return entitle_v0_definition
-        
     } else if (name.trim() == 'entitle-v1') {
-        console.log('b')
         return entitle_v1_definition
     } else if (name.trim() == 'catalyze-v0') {
         return catalyze_v0_definition
     } else if (name.trim() == 'catalyze-v1') {
         return catalyze_v1_definition
+    } else if (name.trim() == 'abstractify-v1') {
+        return abstractify_v1_definition
+    } else if (name.trim() == 'abstractify-v2') {
+        return abstractify_v2_definition
     }
-    console.log('c')
+    console.log('failed')
     return entitle_v0_definition
 }

@@ -12,6 +12,7 @@ import { CatalyzeBox } from "./aiboxes/catalyze";
 import Container from "@/components/nightshade/container";
 
 import { } from 'ldrs';
+import { AbstractifyBox } from "./aiboxes/abstractify";
 
 interface InterfaceProps {
     secureHandler: (
@@ -54,10 +55,10 @@ export const Interface: React.FC<InterfaceProps> = ({
     const handleSubmit = async () => {
         // setQueryBoxes((prevState) => [...prevState, <AIBox key={queryBoxes.length} />]);
         const method = async (data: string, key: string) => {
-            const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model_.getVersion()}/${model_.getName().toLowerCase()}?api_key=${key}`;
-            // const fetchUrl = `http://localhost:8000/models/${model_.getVersion()}/${model_
-                // .getName()
-                // .toLowerCase()}?api_key=${key}`;
+            // const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model_.getVersion()}/${model_.getName().toLowerCase()}?api_key=${key}`;
+            const fetchUrl = `http://localhost:8000/models/${model_.getVersion()}/${model_
+            .getName()
+            .toLowerCase()}?api_key=${key}`;
             console.log(fetchUrl);
 
             setGenerationTime(null)
@@ -104,58 +105,122 @@ export const Interface: React.FC<InterfaceProps> = ({
                         ),
                     },
                 ]);
-            }
-        
-
-            const response = await axios.post(fetchUrl, {
-                payload: data,
-            });
-
-            setGenerationTime(response.data.elapsed_time)
-
-            if (model.getName().toLowerCase() == "entitle") {
+            } else if (model.getName().toLowerCase() == "abstractify") {
                 setQueryBoxes((prevState) => [
-                    ...prevState.slice(0, prevState.length - 1),
+                    ...prevState,
                     {
-                        id: prevState.length - 1,
+                        id: prevState.length,
                         element: (
-                            <EntitleBox
-                                key={prevState.length - 1}
-                                load={false}
-                                main_title={response.data.optimized_title}
-                                alternate_titles={response.data.partial_responses}
+                            <AbstractifyBox
+                                key={prevState.length}
+                                load={true}
+                                edited_abstract={null}
+                                word_count={null}
+                                sentence_count={null}
+                                structure_score={null}
+                                tone_score={null}
+                                overall_score={null}
                             />
                         ),
                     },
                 ]);
-            } else if (model.getName().toLowerCase() == "catalyze") {
-                console.log(response.data);
-                const dataArray = Object.entries(response.data.category_breakdown).map(
-                    ([key, value]) => ({ key, value })
-                );
-                dataArray.sort((a: any, b: any) => b.value - a.value);
 
-                const category_1 = { [dataArray[0].key]: dataArray[0].value as number };
-                const category_2 = { [dataArray[1].key]: dataArray[1].value as number };
-                const category_3 = { [dataArray[2].key]: dataArray[2].value as number };
 
-                setQueryBoxes((prevState) => [
-                    ...prevState.slice(0, prevState.length - 1),
-                    {
-                        id: prevState.length - 1,
-                        element: (
-                            <CatalyzeBox
-                                key={`sdasd${prevState.length - 1}`}
-                                load={false}
-                                category_1={category_1}
-                                category_2={category_2}
-                                category_3={category_3}
-                            />
-                        ),
-                    },
-                ]);
+                const response = await axios.post(fetchUrl, {
+                    payload: data,
+                });
+
+                setGenerationTime(response.data.elapsed_time)
+
+                if (model.getName().toLowerCase() == "entitle") {
+                    setQueryBoxes((prevState) => [
+                        ...prevState.slice(0, prevState.length - 1),
+                        {
+                            id: prevState.length - 1,
+                            element: (
+                                <EntitleBox
+                                    key={prevState.length - 1}
+                                    load={false}
+                                    main_title={response.data.optimized_title}
+                                    alternate_titles={response.data.partial_responses}
+                                />
+                            ),
+                        },
+                    ]);
+                } else if (model.getName().toLowerCase() == "catalyze") {
+                    console.log(response.data);
+                    const dataArray = Object.entries(response.data.category_breakdown).map(
+                        ([key, value]) => ({ key, value })
+                    );
+                    dataArray.sort((a: any, b: any) => b.value - a.value);
+
+                    const category_1 = { [dataArray[0].key]: dataArray[0].value as number };
+                    const category_2 = { [dataArray[1].key]: dataArray[1].value as number };
+                    const category_3 = { [dataArray[2].key]: dataArray[2].value as number };
+
+                    setQueryBoxes((prevState) => [
+                        ...prevState.slice(0, prevState.length - 1),
+                        {
+                            id: prevState.length - 1,
+                            element: (
+                                <CatalyzeBox
+                                    key={`sdasd${prevState.length - 1}`}
+                                    load={false}
+                                    category_1={category_1}
+                                    category_2={category_2}
+                                    category_3={category_3}
+                                />
+                            ),
+                        },
+                    ]);
+                } else if (model.getName().toLowerCase() == "catalyze") {
+                    console.log(response.data);
+                    const dataArray = Object.entries(response.data.category_breakdown).map(
+                        ([key, value]) => ({ key, value })
+                    );
+                    dataArray.sort((a: any, b: any) => b.value - a.value);
+
+                    const category_1 = { [dataArray[0].key]: dataArray[0].value as number };
+                    const category_2 = { [dataArray[1].key]: dataArray[1].value as number };
+                    const category_3 = { [dataArray[2].key]: dataArray[2].value as number };
+
+                    setQueryBoxes((prevState) => [
+                        ...prevState.slice(0, prevState.length - 1),
+                        {
+                            id: prevState.length - 1,
+                            element: (
+                                <CatalyzeBox
+                                    key={`sdasd${prevState.length - 1}`}
+                                    load={false}
+                                    category_1={category_1}
+                                    category_2={category_2}
+                                    category_3={category_3}
+                                />
+                            ),
+                        },
+                    ]);
+                } else if (model.getName().toLowerCase() == "abstractify") {
+
+                    setQueryBoxes((prevState) => [
+                        ...prevState.slice(0, prevState.length - 1),
+                        {
+                            id: prevState.length - 1,
+                            element: (
+                                <AbstractifyBox
+                                    key={prevState.length}
+                                    load={false}
+                                    edited_abstract={response.data.edited_text}
+                                    word_count={response.data.word_count}
+                                    sentence_count={response.data.sentence_count}
+                                    structure_score={response.data.structure}
+                                    tone_score={response.data.tone}
+                                    overall_score={response.data.overall_score}
+                                />
+                            ),
+                        },
+                    ]);
+                }
             }
-
             setQueryBoxes((prevState) => {
                 setQueries((prevState1) => {
                     return [...prevState1, { id: prevState.length, text: "" }];
@@ -263,14 +328,14 @@ export const Interface: React.FC<InterfaceProps> = ({
                         <label className="font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70 self-center text-[12px] lg:text-xs flex items-center gap-x-2">
                             Generation: {generationTime != null && generationTime != 0 ?
                                 <span>{generationTime}</span>
-                                :<>{'  '}
-                                <l-ring
-                                    size="20"
-                                    stroke="3"
-                                    bg-opacity="0"
-                                    speed="2"
-                                    color="white"
-                                ></l-ring>{'  '}</>
+                                : <>{'  '}
+                                    <l-ring
+                                        size="20"
+                                        stroke="3"
+                                        bg-opacity="0"
+                                        speed="2"
+                                        color="white"
+                                    ></l-ring>{'  '}</>
                             } ms
                         </label>
                         <div className="hidden px-2 lg:flex justify-center items-center">

@@ -1,34 +1,3 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-import { useState, useEffect } from 'react';
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-
-interface MousePosition {
-  x: number;
-  y: number;
-}
-
-export function MousePosition(): MousePosition {
-  const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (event: MouseEvent) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
-    }
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, []);
-
-  return mousePosition;
-}
-
 import React from 'react';
 
 interface ColorStop {
@@ -58,7 +27,7 @@ function interpolateColor(color1: string, color2: string, factor: number): strin
     return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 }
 
-function getColorForScore(score: number): string {
+export function getColorForScore(score: number): string {
     for (let i = 0; i < colorStops.length - 1; i++) {
         const start = colorStops[i];
         const end = colorStops[i + 1];
@@ -69,5 +38,3 @@ function getColorForScore(score: number): string {
     }
     return colorStops[colorStops.length - 1].color; // Return the last color if score is above the last stop
 }
-
-
