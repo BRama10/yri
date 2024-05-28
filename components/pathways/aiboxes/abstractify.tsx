@@ -44,9 +44,9 @@ export const AbstractifyBox: React.FC<AbstractifyProps> = ({
                         <div className='w-full h-full flex flex-col gap-y-6'>
                             <p className='max-w-full text-wrap text-lg'>Here&apos;s an overview of your abstracts scoring:</p>
 
-                            <div className='w-full max-w-full flex-wrap flex flex-row gap-x-3'>
+                            <div className='w-full max-w-full flex-wrap flex flex-row gap-x-3 items-center'>
                                 <Badge content={(tone_score! * 10).toFixed(2)} color="success" className='max-w-1/4'>
-                                    <p>Tone Score: </p>
+                                    <p className='p-4'>Tone Score: </p>
                                 </Badge>
 
                                 <Progress
