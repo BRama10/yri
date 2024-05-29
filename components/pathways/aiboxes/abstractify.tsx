@@ -41,22 +41,51 @@ export const AbstractifyBox: React.FC<AbstractifyProps> = ({
                             color="green"
                         ></l-spiral>
                         :
-                        <div className='w-full h-full flex flex-col gap-y-6'>
+                        <div className='w-full h-full flex flex-col gap-y-4'>
                             <p className='max-w-full text-wrap text-lg'>Here&apos;s an overview of your abstracts scoring:</p>
 
+                            <div className='w-full max-w-full flex flex-row justify-between px-4 gap-x-2'>
+                                <p className='w-1/2 text-center'>{sentence_count} Sentences</p>
+                                <p className='w-1/2 text-center'>{word_count} Words</p>
+                            </div>
+
                             <div className='w-full max-w-full flex-wrap flex flex-row gap-x-3 items-center'>
-                                <Badge content={(tone_score! * 10).toFixed(2)} color="success" className='max-w-1/4'>
-                                    <p className='p-4'>Tone Score: </p>
+                                <Badge content={(overall_score! * 10).toFixed(2)} color="success" classNames={{
+                                    base: 'w-1/5 min-w-1/5'
+                                }}>
+                                    <p className='p-3'>Overall:</p>
+                                </Badge>
+
+                                <Progress
+                                    // label={'Tone Score'}
+                                    size="md"
+                                    value={parseFloat((overall_score! * 10).toFixed(2))}
+                                    maxValue={10}
+                                    color="success"
+                                    showValueLabel={false}
+                                    className="max-w-3/4 w-3/4"
+                                    classNames={{
+                                        indicator: `text-[${getColorForScore(parseFloat((overall_score! * 10).toFixed(2)))}]`
+                                    }}
+                                />
+
+                            </div>
+
+                            <div className='w-full max-w-full flex-wrap flex flex-row gap-x-3 items-center'>
+                                <Badge content={(tone_score! * 10).toFixed(2)} color="success" classNames={{
+                                    base: 'w-1/5 min-w-1/5'
+                                }}>
+                                    <p className='p-3'>Tone: </p>
                                 </Badge>
 
                                 <Progress
                                     // label={'Tone Score'}
                                     size="md"
                                     value={parseFloat((tone_score! * 10).toFixed(2))}
-                                    maxValue={100}
+                                    maxValue={10}
                                     color="success"
                                     showValueLabel={false}
-                                    className="max-w-3/4] w-3/4"
+                                    className="max-w-3/4 w-3/4"
                                     classNames={{
                                         indicator: `text-[${getColorForScore(parseFloat((tone_score! * 10).toFixed(2)))}]`
                                     }}
@@ -64,36 +93,34 @@ export const AbstractifyBox: React.FC<AbstractifyProps> = ({
 
                             </div>
 
-                            {/* <Progress
-                                label={parseRecord(category_1!)[0] as string}
-                                size="md"
-                                value={parseRecord(category_1!)[1] as number}
-                                maxValue={100}
-                                color="success"
-                                showValueLabel={true}
-                                className="max-w-[90%] w-[90%]"
-                            />
+                            <div className='w-full max-w-full flex-wrap flex flex-row gap-x-3 items-center'>
+                                <Badge content={(structure_score! * 10).toFixed(2)} color="success" classNames={{
+                                    base: 'w-1/5 min-w-1/5'
+                                }}>
+                                    <p className='p-3'>Complexity:</p>
+                                </Badge>
 
-                            <Progress
-                                label={parseRecord(category_2!)[0] as string}
-                                size="md"
-                                value={parseRecord(category_2!)[1] as number}
-                                maxValue={100}
-                                color="warning"
-                                showValueLabel={true}
-                                className="max-w-[90%] w-[90%]"
-                            />
+                                <Progress
+                                    // label={'Tone Score'}
+                                    size="md"
+                                    value={parseFloat((structure_score! * 10).toFixed(2))}
+                                    maxValue={10}
+                                    color="success"
+                                    showValueLabel={false}
+                                    className="max-w-3/4 w-3/4"
+                                    classNames={{
+                                        indicator: `text-[${getColorForScore(parseFloat((tone_score! * 10).toFixed(2)))}]`
+                                    }}
+                                />
 
-                            <Progress
-                                label={parseRecord(category_3!)[0] as string}
-                                size="md"
-                                value={parseRecord(category_3!)[1] as number}
-                                maxValue={100}
-                                color="danger"
-                                showValueLabel={true}
-                                className="max-w-[90%] w-[90%]"
-                            /> */}
-                        </div>}
+                            </div>
+
+                            <div className='w-full'>Optimized Abstract: </div>
+                            <p className='w-full text-wrap'>
+                                {edited_abstract}
+                            </p>
+                        </div>
+                    }
                 </div>
             </div>
             <div

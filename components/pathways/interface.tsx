@@ -57,8 +57,8 @@ export const Interface: React.FC<InterfaceProps> = ({
         const method = async (data: string, key: string) => {
             // const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model_.getVersion()}/${model_.getName().toLowerCase()}?api_key=${key}`;
             const fetchUrl = `http://localhost:8000/models/${model_.getVersion()}/${model_
-            .getName()
-            .toLowerCase()}?api_key=${key}`;
+                .getName()
+                .toLowerCase()}?api_key=${key}`;
             console.log(fetchUrl);
 
             setGenerationTime(null)
@@ -124,103 +124,79 @@ export const Interface: React.FC<InterfaceProps> = ({
                         ),
                     },
                 ]);
-
-
-                const response = await axios.post(fetchUrl, {
-                    payload: data,
-                });
-
-                setGenerationTime(response.data.elapsed_time)
-
-                if (model.getName().toLowerCase() == "entitle") {
-                    setQueryBoxes((prevState) => [
-                        ...prevState.slice(0, prevState.length - 1),
-                        {
-                            id: prevState.length - 1,
-                            element: (
-                                <EntitleBox
-                                    key={prevState.length - 1}
-                                    load={false}
-                                    main_title={response.data.optimized_title}
-                                    alternate_titles={response.data.partial_responses}
-                                />
-                            ),
-                        },
-                    ]);
-                } else if (model.getName().toLowerCase() == "catalyze") {
-                    console.log(response.data);
-                    const dataArray = Object.entries(response.data.category_breakdown).map(
-                        ([key, value]) => ({ key, value })
-                    );
-                    dataArray.sort((a: any, b: any) => b.value - a.value);
-
-                    const category_1 = { [dataArray[0].key]: dataArray[0].value as number };
-                    const category_2 = { [dataArray[1].key]: dataArray[1].value as number };
-                    const category_3 = { [dataArray[2].key]: dataArray[2].value as number };
-
-                    setQueryBoxes((prevState) => [
-                        ...prevState.slice(0, prevState.length - 1),
-                        {
-                            id: prevState.length - 1,
-                            element: (
-                                <CatalyzeBox
-                                    key={`sdasd${prevState.length - 1}`}
-                                    load={false}
-                                    category_1={category_1}
-                                    category_2={category_2}
-                                    category_3={category_3}
-                                />
-                            ),
-                        },
-                    ]);
-                } else if (model.getName().toLowerCase() == "catalyze") {
-                    console.log(response.data);
-                    const dataArray = Object.entries(response.data.category_breakdown).map(
-                        ([key, value]) => ({ key, value })
-                    );
-                    dataArray.sort((a: any, b: any) => b.value - a.value);
-
-                    const category_1 = { [dataArray[0].key]: dataArray[0].value as number };
-                    const category_2 = { [dataArray[1].key]: dataArray[1].value as number };
-                    const category_3 = { [dataArray[2].key]: dataArray[2].value as number };
-
-                    setQueryBoxes((prevState) => [
-                        ...prevState.slice(0, prevState.length - 1),
-                        {
-                            id: prevState.length - 1,
-                            element: (
-                                <CatalyzeBox
-                                    key={`sdasd${prevState.length - 1}`}
-                                    load={false}
-                                    category_1={category_1}
-                                    category_2={category_2}
-                                    category_3={category_3}
-                                />
-                            ),
-                        },
-                    ]);
-                } else if (model.getName().toLowerCase() == "abstractify") {
-
-                    setQueryBoxes((prevState) => [
-                        ...prevState.slice(0, prevState.length - 1),
-                        {
-                            id: prevState.length - 1,
-                            element: (
-                                <AbstractifyBox
-                                    key={prevState.length}
-                                    load={false}
-                                    edited_abstract={response.data.edited_text}
-                                    word_count={response.data.word_count}
-                                    sentence_count={response.data.sentence_count}
-                                    structure_score={response.data.structure}
-                                    tone_score={response.data.tone}
-                                    overall_score={response.data.overall_score}
-                                />
-                            ),
-                        },
-                    ]);
-                }
             }
+
+            const response = await axios.post(fetchUrl, {
+                payload: data,
+            });
+
+            console.log(response);
+
+            setGenerationTime(response.data.elapsed_time)
+
+            if (model.getName().toLowerCase() == "entitle") {
+                setQueryBoxes((prevState) => [
+                    ...prevState.slice(0, prevState.length - 1),
+                    {
+                        id: prevState.length - 1,
+                        element: (
+                            <EntitleBox
+                                key={prevState.length - 1}
+                                load={false}
+                                main_title={response.data.optimized_title}
+                                alternate_titles={response.data.partial_responses}
+                            />
+                        ),
+                    },
+                ]);
+            } else if (model.getName().toLowerCase() == "catalyze") {
+                console.log(response.data);
+                const dataArray = Object.entries(response.data.category_breakdown).map(
+                    ([key, value]) => ({ key, value })
+                );
+                dataArray.sort((a: any, b: any) => b.value - a.value);
+
+                const category_1 = { [dataArray[0].key]: dataArray[0].value as number };
+                const category_2 = { [dataArray[1].key]: dataArray[1].value as number };
+                const category_3 = { [dataArray[2].key]: dataArray[2].value as number };
+
+                setQueryBoxes((prevState) => [
+                    ...prevState.slice(0, prevState.length - 1),
+                    {
+                        id: prevState.length - 1,
+                        element: (
+                            <CatalyzeBox
+                                key={`sdasd${prevState.length - 1}`}
+                                load={false}
+                                category_1={category_1}
+                                category_2={category_2}
+                                category_3={category_3}
+                            />
+                        ),
+                    },
+                ]);
+            } else if (model.getName().toLowerCase() == "abstractify") {
+
+                setQueryBoxes((prevState) => [
+                    ...prevState.slice(0, prevState.length - 1),
+                    {
+                        id: prevState.length - 1,
+                        element: (
+                            <AbstractifyBox
+                                key={prevState.length}
+                                load={false}
+                                edited_abstract={response.data.edited_text}
+                                word_count={response.data.word_count}
+                                sentence_count={response.data.sentence_count}
+                                structure_score={response.data.structure}
+                                tone_score={response.data.tone}
+                                overall_score={response.data.overall_score}
+                            />
+                        ),
+                    },
+                ]);
+            }
+
             setQueryBoxes((prevState) => {
                 setQueries((prevState1) => {
                     return [...prevState1, { id: prevState.length, text: "" }];
