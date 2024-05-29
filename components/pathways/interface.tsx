@@ -55,10 +55,10 @@ export const Interface: React.FC<InterfaceProps> = ({
     const handleSubmit = async () => {
         // setQueryBoxes((prevState) => [...prevState, <AIBox key={queryBoxes.length} />]);
         const method = async (data: string, key: string) => {
-            // const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model_.getVersion()}/${model_.getName().toLowerCase()}?api_key=${key}`;
-            const fetchUrl = `http://localhost:8000/models/${model_.getVersion()}/${model_
-                .getName()
-                .toLowerCase()}?api_key=${key}`;
+            const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model_.getVersion()}/${model_.getName().toLowerCase()}?api_key=${key}`;
+            // const fetchUrl = `http://localhost:8000/models/${model_.getVersion()}/${model_
+                // .getName()
+                // .toLowerCase()}?api_key=${key}`;
             console.log(fetchUrl);
 
             setGenerationTime(null)

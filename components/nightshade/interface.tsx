@@ -123,8 +123,8 @@ export const Interface: React.FC<InterfaceProps> = ({
         // setQueryBoxes((prevState) => [...prevState, <AIBox key={queryBoxes.length} />]);
         const method = async (data: string, key: string) => {
             setTranscribe(['']);
-            // const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/nightshade/generate?api_key=${key}`;
-            const fetchUrl = `http://localhost:8000/models/nightshade/generate?api_key=${key}`;
+            const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/nightshade/generate?api_key=${key}`;
+            // const fetchUrl = `http://localhost:8000/models/nightshade/generate?api_key=${key}`;
 
             setConversation((prevState: any) => {
                 return [...prevState, {
