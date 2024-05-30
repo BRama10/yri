@@ -42,8 +42,8 @@ export const AbstractifyBox: React.FC<AbstractifyProps> = ({
                         ></l-spiral>
                         :
                         <div className='w-full h-full flex flex-col gap-y-4'>
-                            <p className='max-w-full text-wrap text-lg'>Here&apos;s an overview of your abstracts scoring:</p>
-
+                            <p className='max-w-full text-wrap text-xl'>Here&apos;s an overview of your abstracts scoring:</p>
+                            <div className='w-full flex flex-col gap-y-8 border-white border-1 border-solid p-3 rounded-2xl'>
                             <div className='w-full max-w-full flex flex-row justify-between px-4 gap-x-2'>
                                 <p className='w-1/2 text-center'>{sentence_count} Sentences</p>
                                 <p className='w-1/2 text-center'>{word_count} Words</p>
@@ -115,10 +115,16 @@ export const AbstractifyBox: React.FC<AbstractifyProps> = ({
 
                             </div>
 
-                            <div className='w-full'>Optimized Abstract: </div>
+
+                            </div>
+
+                           
+                            <div className='w-full text-xl'>Optimized Abstract: </div>
+                            <div className='w-full flex flex-col gap-y-8 border-white border-1 border-solid p-3 rounded-2xl'>
                             <p className='w-full text-wrap'>
                                 {edited_abstract}
                             </p>
+                            </div>
                         </div>
                     }
                 </div>

@@ -52,10 +52,10 @@ export const Interface: React.FC<InterfaceProps> = ({
         console.log(queries);
     }, [queries]);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (_model: Model) => {
         // setQueryBoxes((prevState) => [...prevState, <AIBox key={queryBoxes.length} />]);
         const method = async (data: string, key: string) => {
-            const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${model_.getVersion()}/${model_.getName().toLowerCase()}?api_key=${key}`;
+            const fetchUrl = `https://myapp-6thbpbsd7q-uk.a.run.app/models/${_model.getVersion()}/${_model.getName().toLowerCase()}?api_key=${key}`;
             // const fetchUrl = `http://localhost:8000/models/${model_.getVersion()}/${model_
                 // .getName()
                 // .toLowerCase()}?api_key=${key}`;
@@ -69,12 +69,10 @@ export const Interface: React.FC<InterfaceProps> = ({
             //         return prevState;
             //     });
             // });
-            console.log('inside loop', model_)
-
-            const model = model_;
+            console.log('inside loop', _model)
 
 
-            if (model.getName().toLowerCase() == "entitle") {
+            if (_model.getName().toLowerCase() == "entitle") {
                 setQueryBoxes((prevState) => [
                     ...prevState,
                     {
@@ -89,7 +87,7 @@ export const Interface: React.FC<InterfaceProps> = ({
                         ),
                     },
                 ]);
-            } else if (model.getName().toLowerCase() == "catalyze") {
+            } else if (_model.getName().toLowerCase() == "catalyze") {
                 setQueryBoxes((prevState) => [
                     ...prevState,
                     {
@@ -105,7 +103,7 @@ export const Interface: React.FC<InterfaceProps> = ({
                         ),
                     },
                 ]);
-            } else if (model.getName().toLowerCase() == "abstractify") {
+            } else if (_model.getName().toLowerCase() == "abstractify") {
                 setQueryBoxes((prevState) => [
                     ...prevState,
                     {
@@ -134,7 +132,7 @@ export const Interface: React.FC<InterfaceProps> = ({
 
             setGenerationTime(response.data.elapsed_time)
 
-            if (model.getName().toLowerCase() == "entitle") {
+            if (_model.getName().toLowerCase() == "entitle") {
                 setQueryBoxes((prevState) => [
                     ...prevState.slice(0, prevState.length - 1),
                     {
@@ -149,7 +147,7 @@ export const Interface: React.FC<InterfaceProps> = ({
                         ),
                     },
                 ]);
-            } else if (model.getName().toLowerCase() == "catalyze") {
+            } else if (_model.getName().toLowerCase() == "catalyze") {
                 console.log(response.data);
                 const dataArray = Object.entries(response.data.category_breakdown).map(
                     ([key, value]) => ({ key, value })
@@ -175,7 +173,7 @@ export const Interface: React.FC<InterfaceProps> = ({
                         ),
                     },
                 ]);
-            } else if (model.getName().toLowerCase() == "abstractify") {
+            } else if (_model.getName().toLowerCase() == "abstractify") {
 
                 setQueryBoxes((prevState) => [
                     ...prevState.slice(0, prevState.length - 1),
@@ -235,7 +233,7 @@ export const Interface: React.FC<InterfaceProps> = ({
 
             if (isCtrlEnter || isMetaEnter) {
                 // Call the function to handle the button press
-                handleSubmit();
+                handleSubmit(model_);
             }
         };
 
@@ -255,7 +253,7 @@ export const Interface: React.FC<InterfaceProps> = ({
             </Container >
             <div className="h-[10%] w-full border-t-1 border-[rgba(153, 153, 153, 0.5)] flex flex-row-reverse items-center pr-8 gap-x-10">
                 <button
-                    onClick={() => handleSubmit()}
+                    onClick={() => handleSubmit(model_)}
                     className="items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 bg-[#fff] hover:bg-slate-200 h-10 px-4 py-2 flex gap-3 text-[#1f1f1f]"
                 >
                     <div>Submit</div>
