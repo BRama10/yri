@@ -12,11 +12,20 @@ import Apple from "@/public/apple.svg";
 import { IlluminatedCard } from "@/components/illuminate_card";
 
 import animationData from "@/animations/landing_page_animation.json";
-import { Player } from "@lottiefiles/react-lottie-player";
+// import { Player } from "@lottiefiles/react-lottie-player";
+import dynamic from 'next/dynamic';
 
-import Globe from 'react-globe.gl';
-import { World } from '@/components/globe'
+const Player = dynamic(() =>
+  import('@lottiefiles/react-lottie-player').then((mod) => mod.Player)
+)
+
+// import Globe from 'react-globe.gl';
+// import { World } from '@/components/globe'
 import { useEffect, useRef, useState } from "react";
+
+ 
+
+const World = dynamic(() => import('@/components/globe'), { ssr: false })
 
 
 export default function Home() {
@@ -191,12 +200,12 @@ export default function Home() {
               Bordered
             </Chip>
           </div>
-          {/* <Player
+          {(typeof window !== "undefined" && typeof document !== "undefined") && <Player
             src={animationData}
             loop
             autoplay
             className="rounded-2xl react-floater-animated"
-          /> */}
+          />}
           <div className="flex flex-col px-10 w-1/4 grow h-full self-start gap-y-16">
             <div className="w-full text-wrap text-3xl text-white font-bold">
               Always improving.{' '}
@@ -561,7 +570,7 @@ export default function Home() {
             <p className='text-center w-full text-6xl font-semibold text-[#FF8F8F]'>{currentImpactNumber}</p>
             <p className='text-center w-full text-3xl'>Students Impacted</p>
           </div>
-          {/* <World /> */}
+          <World />
           <div className='flex flex-col gap-y-3 w-1/4 text-white'>
             <p className='text-center w-full text-6xl font-semibold text-[#FF8F8F]'>{currentStateNumber}</p>
             <p className='text-center w-full text-3xl'>States</p>

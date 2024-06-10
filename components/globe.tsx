@@ -1,6 +1,9 @@
 'use client';
-
-import Globe from 'react-globe.gl';
+import dynamic from 'next/dynamic'
+const Globe = dynamic(() => import('react-globe.gl').then((mod) => mod.default), {
+    ssr: false
+  })
+// import Globe from 'react-globe.gl';
 import { useEffect, useRef, useState } from 'react';
 
 
@@ -13,8 +16,9 @@ interface CableGeo {
     features: CableGeoFeature[];
 }
 
-export const World = () => {
+const World = () => {
     const [cablePaths, setCablePaths] = useState<any>([]);
+    
 
     useEffect(() => {
         const fetchCableData = async () => {
@@ -35,12 +39,19 @@ export const World = () => {
     }, []);
 
     const globeEl = useRef<any>()
-    const viewportWidth = window.innerWidth;
-    const elem: HTMLCanvasElement = document.getElementsByTagName('canvas')[0] as HTMLCanvasElement;
-    
-    if (elem) {
-        elem.style.borderRadius = '9999px';
+    let viewportWidth;
+    let elem: HTMLCanvasElement;
+    if (typeof window !== "undefined" && typeof document !== "undefined"){
+        viewportWidth = window.innerWidth;
+        elem = document.getElementsByTagName('canvas')[0] as HTMLCanvasElement;
+
+        if (elem) {
+            elem.style.borderRadius = '9999px';
+        }
     }
+    // const elem: HTMLCanvasElement = 
+    
+    
 
     useEffect(() => {
         // Auto-rotate
@@ -70,9 +81,11 @@ export const World = () => {
         pathDashLength={0.1}
         pathDashGap={0.008}
         pathDashAnimateTime={12000}
-        width={viewportWidth/2.5}
+        width={viewportWidth!/2.5}
         height={600}
         enablePointerInteraction={false}
         backgroundColor='rgba(0,0,0,0)'
     />;
 };
+
+export default World;

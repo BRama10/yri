@@ -38,23 +38,23 @@ export const WebNavbarV1 = () => {
             Optimizers
           </Link>
         </NavbarItem>
-        <NavbarItem isActive={pathname == '/pathways' && true}>
+        {/* <NavbarItem isActive={pathname == '/pathways' && true}>
           <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/judge" aria-current={pathname == '/pathways' && 'page'}>
             Pathways
           </Link>
-        </NavbarItem>
+        </NavbarItem> */}
         <NavbarItem isActive={pathname == '/nightshade' && true}>
           <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/nightshade" aria-current={pathname == '/nightshade' && 'page'}>
             Nightshade
           </Link>
         </NavbarItem>
-        <NavbarItem>
+        {/* <NavbarItem>
           <Link className="text-white relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center" href="/guide">
             API
           </Link>
-        </NavbarItem>
+        </NavbarItem> */}
       </NavbarContent>
-      <NavbarContent justify="end" className='hidden md:flex'>
+      {/* <NavbarContent justify="end" className='hidden md:flex'>
         <NavbarItem className="hidden md:flex gap-x-4 px-6">
         <Button as={Link} href="#" className='bg-white text-black rounded-full'>
             Donate
@@ -63,7 +63,7 @@ export const WebNavbarV1 = () => {
             Login
           </Button>
         </NavbarItem>
-      </NavbarContent>
+      </NavbarContent> */}
     </Navbar>
   )
 }
