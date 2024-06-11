@@ -1,0 +1,32 @@
+  
+  .square-outer, .square-inner {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  
+  .square-outer {
+    width: 30px; 
+    height: 30px; 
+    border-radius: 0%;
+    border-width: 2.5px;
+    border-color: white;
+  }
+  
+  .square-inner {
+    width: 15px; 
+    height: 15px; 
+    background-color: white;
+  }
+  
+  .line {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    width: 5px; 
+    height: 80%; 
+    background-color: white; 
+    transform: translateX(-50%);
+  }
+  

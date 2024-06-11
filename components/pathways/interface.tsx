@@ -251,7 +251,7 @@ export const Interface: React.FC<InterfaceProps> = ({
             <Container >
                 {queryBoxes.map((query) => query.element)}
             </Container >
-            <div className="h-[10%] w-full border-t-1 border-[rgba(153, 153, 153, 0.5)] flex flex-row-reverse items-center pr-8 gap-x-10">
+            <div className="h-[10%] w-full border-t-1 border-[rgba(153, 153, 153, 0.5)] flex flex-row-reverse items-center pr-8 gap-x-10 justify-between pl-8">
                 <button
                     onClick={() => handleSubmit(model_)}
                     className="items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 bg-[#fff] hover:bg-slate-200 h-10 px-4 py-2 flex gap-3 text-[#1f1f1f]"

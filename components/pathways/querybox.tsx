@@ -53,7 +53,7 @@ export const QueryBox: React.FC<QueryBoxProps> = ({
             className="h-auto flex w-full"
             id="message_input_first"
             minRows={1}
-            placeholder="Fix the abstract to help me win ISEF."
+            placeholder="Enter your abstract/information to let our tools fix for you!"
             classNames={{
                 base: 'bg-inherit',
                 input: 'bg-inherit !data-[hover=true]:bg-inherit !group-data-[focus=true]:inherit !text-lg',
