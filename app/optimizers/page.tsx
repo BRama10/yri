@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Pathways } from './pathways'
 
+export const maxDuration = 45;
 export const dynamic = 'force-dynamic';
 
 export default async function PathwaysPage() {
